@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Gift for Nasra</title>
+<style>
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#b30000;color:white;overflow-x:hidden}
+.page{display:none;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px;box-sizing:border-box}
+.active{display:flex}
+.container{background:rgba(255,255,255,.15);border-radius:20px;padding:30px;box-shadow:0 0 30px rgba(255,255,255,.4);width:100%;max-width:400px;position:relative;overflow:hidden}
+input{padding:12px;border-radius:10px;border:none;width:100%;max-width:250px;margin:15px 0;display:block;margin-left:auto;margin-right:auto;color:#333}
+button{padding:12px 25px;border:none;border-radius:25px;background:white;color:#b30000;font-weight:bold;cursor:pointer;margin:10px;transition:0.3s}
+button:hover{transform:scale(1.1);background:#ffdada}
+
+/* --- PHOTO FRAME STYLE --- */
+.profile-frame {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin: 0 auto 20px auto;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  animation: borderGlow 2s infinite alternate;
+  background-color: #eee;
+}
+.profile-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- CONFETTI ANIMATION --- */
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 8px;
+  height: 8px;
+  background-color: #f2d74e;
+  animation: fall 3.5s linear infinite;
+  z-index: 0;
+}
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(150px) rotate(360deg); opacity: 0; }
+}
+
+/* --- LOGIN PAGE ANIMATIONS --- */
+.glow-text {
+  font-size: 35px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  animation: textGlow 1.5s ease-in-out infinite alternate;
+}
+@keyframes textGlow {
+  from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffeb3b; }
+  to { text-shadow: 0 0 20px #fff, 0 0 30px #ff00de, 0 0 40px #ff00de; }
+}
+
+.cake {
+  position: relative;
+  width: 120px;
+  height: 70px;
+  background: #4d2600; 
+  border-radius: 10px 10px 0 0;
+  margin: 50px auto 10px auto;
+  box-shadow: inset 0 8px 0 #663300;
+  z-index: 1;
+}
+.plate {
+  width: 150px;
+  height: 8px;
+  background: #eee;
+  border-radius: 10px;
+  margin: 0 auto 20px auto;
+}
+.candle-row {
+  position: absolute;
+  top: -35px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.candle {
+  width: 8px;
+  height: 35px;
+  background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+  border-radius: 2px;
+  position: relative;
+}
+.flame {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 18px;
+  background: #ffeb3b;
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 15px #ffeb3b;
+  animation: flicker 0.1s infinite alternate; 
+
+}
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1); }
+  100% { transform: translateX(-50%) scale(1.2); }
+}
+
+/* --- MESSAGE BORDER & TEXT --- */
+.glowing-note {
+  border: 2px solid white;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  line-height: 1.6;
+  min-height: 220px;
+  max-width: 100%;
+  animation: borderGlow 2s infinite alternate;
+  box-shadow: 0 0 15px white;
+  text-align: left;
+}
+@keyframes borderGlow {
+  0% { border-color: #fff; }
+  100% { border-color: #ffeb3b; }
+}
+
+#animated-message span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: wordFadeIn 0.4s forwards;
+  margin-right: 5px;
+}
+@keyframes wordFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.love-text-bolder {
+  display: block;
+  margin: 25px auto 10px auto;
+  text-align: center;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 2px;
+  opacity: 0;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+  animation: wordFadeIn 1s forwards;
+}
+
+.big{font-size:35px;font-weight:bold;margin-bottom:10px}
+.back{margin-top:30px;font-size:14px;opacity:0.8}
+.jar-layout{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;margin:20px 0}
+.jar-left,.jar-right{display:flex;flex-direction:column;gap:15px;width:120px}
+.reason{background:rgba(255,255,255,.15);padding:10px;border-radius:12px;font-size:13px;opacity:0}
+.jar-icon{font-size:80px;line-height:1;filter:drop-shadow(0 0 8px rgba(255,255,255,.6));animation:pulse 2s infinite;position:relative}
+
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes floatUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes heartFloat{0%{opacity:0;transform:translateY(20px) scale(.8)}50%{opacity:1}100%{opacity:0;transform:translateY(-80px) scale(1.2)}}
+.heart{position:absolute;font-size:18px;animation:heartFloat 2.5s ease-in-out forwards;pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="page active" id="login">
+  <div class="container" id="confetti-container">
+    <div class="glow-text">Happy Birthday!</div>
+    <div class="cake">
+      <div class="candle-row">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+    </div>
+    <div class="plate"></div>
+    <h2 style="margin-top:10px">Enter DOB to Unlock</h2>
+    <input type="date" id="dob" />
+    <button onclick="checkDOB()">Open Gift 🎁</button>
+    <p id="error" style="color:#ffeb3b; font-weight:bold; margin-top:10px"></p>
+  </div>
+</div>
+
+<div class="page" id="question">
+  <div class="container">
+    <div class="big">Hi! Nasra</div>
+    <div class="big">Happy Birthday</div>
+    <p>Do you want to see your little Birthday gift?</p>
+    <button onclick="show('gift')">YES PLEASE</button>
+    <button onclick="show('no')">NO THANKS</button>
+  </div>
+</div>
+
+<div class="page" id="no">
+  <div class="container">
+    <div class="big">🤍💔🤍</div>
+    <p>I promise you will love it, please say yes!</p>
+    <button onclick="show('question')">TRY AGAIN</button>
+  </div>
+</div>
+
+<div class="page" id="gift">
+  <div class="container">
+    <h2>THESE ARE FOR YOU</h2>
+    <p>Click icons to open</p>
+    <div style="display:flex;justify-content:center;gap:20px;font-size:60px">
+      <div onclick="show('jar')" style="cursor:pointer" title="Reasons Why">🫙</div>
+      <div onclick="show('song')" style="cursor:pointer" title="Music">🎧</div>
+      <div onclick="show('letter')" style="cursor:pointer" title="Message">💌</div>
+    </div>
+    <button class="back" onclick="show('login')">Exit</button>
+  </div>
+</div>
+
+<div class="page" id="jar">
+  <div class="container">
+    <h2>JAR OF LOVE</h2>
+    <p>4 Reasons Why You're Special</p>
+    <div class="jar-layout">
+      <div class="jar-left">
+        <div class="reason">1. Simply beautiful</div>
+        <div class="reason">2. You’re so real</div>
+      </div>
+      <div class="jar-center">
+        <div class="jar-icon" id="jarIcon">🫙</div>
+      </div>
+      <div class="jar-right">
+        <div class="reason">3. Your heart is gold</div>
+        <div class="reason">4. That smile, though</div>
+      </div>
+    </div>
+    <button class="back" onclick="show('gift')">Back to Gifts</button>
+  </div>
+</div>
+
+<div class="page" id="song">
+  <div class="container">
+    <h2>A SPECIAL SONG</h2>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px" src="https://www.youtube.com/embed/asZm5gHknmU" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <p style="margin-top:15px; font-weight:bold">Meddy - My Vow</p>
+    <button class="back" onclick="show('gift')">Back to Gifts</button>
+  </div>
+</div>
+
+<div class="page" id="letter">
+  <div class="container">
+    <h2>BIRTHDAY MESSAGE</h2>
+    
+    <div class="profile-frame">
+        <img src="img/Snapchat-91179132.jpg       " alt="Nasra smiling warmly at the camera in a close-up birthday portrait, seated indoors with soft party lighting and a blurred background; no legible text visible; joyful and celebratory mood">
+    </div>
+
+    <div class="glowing-note">
+      <div id="animated-message"></div>
+      <div class="love-text-bolder" id="love-text">I LOVE YOU</div>
+    </div>
+    <button class="back" onclick="show('gift')">Back to Gifts</button>
+  </div>
+</div>
+
+<script>
+function createConfetti() {
+  const container = document.getElementById('confetti-container');
+  if(!container) return;
+  const colors = ['#f2d74e', '#95c3de', '#ff9a9e', '#ffeb3b', '#ffffff'];
+  for (let i = 0; i < 25; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDelay = Math.random() * 3 + 's';
+    container.appendChild(confetti);
+  }
+}
+createConfetti();
+
+const messageText = "Happy Birthday, Bestie! I’m so proud of the woman you are. Thank you for being such a loyal soul and for always showing kindness to everyone around you. You’re looking so cute leo! I hope this year brings you all the success and happiness you deserve! Happy Birthday Nasra!";
+
+function animateMessage() {
+  const container = document.getElementById('animated-message');
+  const loveText = document.getElementById('love-text');
+  container.innerHTML = '';
+  loveText.style.opacity = '0';
+  
+  const words = messageText.split(' ');
+  words.forEach((word, index) => {
+    const span = document.createElement('span');
+    span.innerText = word;
+    span.style.animationDelay = (index * 0.18) + 's';
+    container.appendChild(span);
+  });
+  
+  setTimeout(() => {
+    loveText.style.opacity = '1';
+  }, words.length * 180 + 300);
+}
+
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target = document.getElementById(id);
+  if(target) {
+    target.classList.add('active');
+    if(id==='jar') startJarEffects();
+    if(id==='letter') animateMessage();
+  }
+}
+
+function startJarEffects(){
+  const reasons=document.querySelectorAll('.reason');
+  reasons.forEach((r,i)=>{
+    r.style.opacity=0;
+    r.style.animation='none';
+    setTimeout(()=>{
+      r.style.animation='floatUp .8s forwards';
+    }, i * 600);
+  });
+
+  const jar=document.getElementById('jarIcon');
+  const oldHearts = jar.querySelectorAll('.heart');
+  oldHearts.forEach(h => h.remove());
+
+  for(let i=0;i<8;i++){
+    setTimeout(()=>{
+      const h=document.createElement('div');
+      h.className='heart';
+      h.innerText='💖';
+      h.style.left=Math.random()*60 + 'px';
+      jar.appendChild(h);
+      setTimeout(()=>h.remove(), 2500);
+    }, i * 400);
+  }
+}
+
+function checkDOB(){
+  const dobInput = document.getElementById('dob').value;
+  // DOB ya Nasra: Jan 28, 2002
+  if(dobInput === '2002-01-28'){
+    show('question');
+  } else {
+    document.getElementById('error').innerText = 'Wrong Date! Please try again.';
+  }
+}
+</script>
+</body>
+</html>
